@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An unbeatable retro pixel-art styled Tic Tac Toe game with a high-contrast layout and an advanced Minimax AI.">
+  <title>TIC TAC TOE - RETRO ARCADE</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IM+Fell+English:ital@0;1&family=Amatic+SC:wght@700&family=Cabin+Sketch:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="arcade-cabinet">
+    <header class="cabinet-header">
+      <h1 class="pixel-glow">TIC TAC TOE</h1>
+      <div class="theme-selector-container">
+        <label for="theme-select">THEME</label>
+        <select id="theme-select" class="theme-select-dropdown">
+          <option value="retro">RETRO ARCADE</option>
+          <option value="notebook">NOTEBOOK SKETCH</option>
+          <option value="chalkboard">CHALKBOARD</option>
+          <option value="forest">FOREST SANCTUARY</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="cabinet-body">
+      
+      <section id="start-screen" class="cabinet-panel">
+        <h2 class="panel-title">SELECT MODE</h2>
+        
+        <div class="mode-selector">
+          <button type="button" id="btn-pvc" class="mode-btn active" aria-pressed="true">
+            1 PLAYER (VS CPU)
+          </button>
+          <button type="button" id="btn-pvp" class="mode-btn" aria-pressed="false">
+            2 PLAYERS (PVP)
+          </button>
+        </div>
+
+        <div id="difficulty-group" class="mode-selector">
+          <h2 class="panel-title" style="margin-top: 10px;">SELECT DIFFICULTY</h2>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+            <button type="button" id="btn-easy" class="mode-btn" aria-pressed="false">
+              EASY
+            </button>
+            <button type="button" id="btn-medium" class="mode-btn active" aria-pressed="true">
+              MEDIUM
+            </button>
+            <button type="button" id="btn-hard" class="mode-btn" aria-pressed="false">
+              UNBEATABLE
+            </button>
+          </div>
+        </div>
+
+        <form id="setup-form" class="setup-form" onsubmit="return false;">
+          <div class="input-group">
+            <label for="p1-name-input" id="lbl-p1">PLAYER 1 NAME</label>
+            <input type="text" id="p1-name-input" class="retro-input" placeholder="PLAYER 1" maxlength="10" required>
+          </div>
+
+          <div id="p2-input-container" class="input-group hidden">
+            <label for="p2-name-input" id="lbl-p2">PLAYER 2 NAME</label>
+            <input type="text" id="p2-name-input" class="retro-input" placeholder="PLAYER 2" maxlength="10">
+          </div>
+
+          <button type="submit" id="btn-start-game" class="retro-btn start-btn">
+            START GAME
+          </button>
+        </form>
+      </section>
+
+      
+      <section id="game-screen" class="cabinet-panel hidden">
+        
+        <div id="turn-indicator" class="turn-indicator">
+          TURN: <span id="current-player-name">PLAYER 1</span>
+        </div>
+
+        
+        <div id="game-board" class="board-grid">
+          <button class="cell" id="cell-0" data-index="0" aria-label="Cell 1"></button>
+          <button class="cell" id="cell-1" data-index="1" aria-label="Cell 2"></button>
+          <button class="cell" id="cell-2" data-index="2" aria-label="Cell 3"></button>
+          <button class="cell" id="cell-3" data-index="3" aria-label="Cell 4"></button>
+          <button class="cell" id="cell-4" data-index="4" aria-label="Cell 5"></button>
+          <button class="cell" id="cell-5" data-index="5" aria-label="Cell 6"></button>
+          <button class="cell" id="cell-6" data-index="6" aria-label="Cell 7"></button>
+          <button class="cell" id="cell-7" data-index="7" aria-label="Cell 8"></button>
+          <button class="cell" id="cell-8" data-index="8" aria-label="Cell 9"></button>
+          <svg id="win-strike-svg" class="win-strike-svg hidden" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line id="win-strike-line" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+        </div>
+
+        
+        <div class="scoreboard">
+          <div class="score-card p1-card">
+            <div class="score-label" id="score-p1-label">P1</div>
+            <div class="score-val" id="score-p1-val">0</div>
+          </div>
+          <div class="score-card draw-card">
+            <div class="score-label">DRAWS</div>
+            <div class="score-val" id="score-draw-val">0</div>
+          </div>
+          <div class="score-card p2-card">
+            <div class="score-label" id="score-p2-label">CPU</div>
+            <div class="score-val" id="score-p2-val">0</div>
+          </div>
+        </div>
+
+        
+        <div class="game-controls">
+          <button type="button" id="btn-play-again" class="retro-btn control-btn">
+            PLAY AGAIN
+          </button>
+          <button type="button" id="btn-new-match" class="retro-btn control-btn">
+            NEW MATCH
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="cabinet-footer">
+      <p class="insert-coin">INSERT COIN TO PLAY</p>
+    </footer>
+  </div>
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
